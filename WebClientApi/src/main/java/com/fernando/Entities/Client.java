@@ -1,9 +1,19 @@
-package com.fernando.entities;
+package com.fernando.Entities;
 
 import java.util.Objects;
 
-public class client {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+
+@Entity
+public class Client {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private String phone;
@@ -14,7 +24,7 @@ public class client {
 	private String city;
 	private String state;
 	
-	public client(Integer id, String name, String phone, String email, String address, String number, String complement,
+	public Client(Integer id, String name, String phone, String email, String address, String number, String complement,
 			String city, String state) {
 		super();
 		this.id = id;
@@ -113,7 +123,7 @@ public class client {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		client other = (client) obj;
+		Client other = (Client) obj;
 		return Objects.equals(id, other.id);
 	}
 	

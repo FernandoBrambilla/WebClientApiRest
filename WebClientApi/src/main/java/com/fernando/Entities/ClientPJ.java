@@ -1,14 +1,14 @@
-package com.fernando.entities;
+package com.fernando.Entities;
 
 import java.util.Objects;
 
-public class clientPJ extends client{
+public class ClientPJ extends Client{
 	
 	
 	private Integer cnpj;
 	private Integer inscEst;
 	
-	public clientPJ(Integer id, String name, String phone, String email, String address, String number,
+	public ClientPJ(Integer id, String name, String phone, String email, String address, String number,
 			String complement, String city, String state) {
 		super(id, name, phone, email, address, number, complement, city, state);
 	}
@@ -45,7 +45,7 @@ public class clientPJ extends client{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		clientPJ other = (clientPJ) obj;
+		ClientPJ other = (ClientPJ) obj;
 		return Objects.equals(cnpj, other.cnpj);
 	}
 	

@@ -1,22 +1,23 @@
-package com.fernando.entities;
+package com.fernando.Entities;
 
 import java.util.Objects;
 
-import com.fernando.enums.bankType;
+import com.fernando.Enums.AccountBankType;
 
-public class bank {
-	
+public class Bank {
+
 	private Integer id;
 	private String name;
-	private bankType bankType;
+	private AccountBankType accountBankType;
 	private String ag;
 	private String account;
-	
-	public bank(Integer id, String name, com.fernando.enums.bankType bankType, String ag, String account) {
+
+	public Bank(Integer id, String name, com.fernando.Enums.AccountBankType accountBankType, String ag,
+			String account) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.bankType = bankType;
+		this.accountBankType = accountBankType;
 		this.ag = ag;
 		this.account = account;
 	}
@@ -37,12 +38,12 @@ public class bank {
 		this.name = name;
 	}
 
-	public bankType getBankType() {
-		return bankType;
+	public AccountBankType getAccountBankType() {
+		return accountBankType;
 	}
 
-	public void setBankType(bankType bankType) {
-		this.bankType = bankType;
+	public void setAccountBankType(AccountBankType accountBankType) {
+		this.accountBankType = accountBankType;
 	}
 
 	public String getAg() {
@@ -74,12 +75,7 @@ public class bank {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		bank other = (bank) obj;
+		Bank other = (Bank) obj;
 		return Objects.equals(id, other.id);
-	}	
-	
-	
-	
-	
-
+	}
 }
