@@ -1,20 +1,29 @@
 package com.fernando.Entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
 
 
-@Entity
-public class Client {
+
+@MappedSuperclass 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Client implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	private Integer clientId;
 	private String name;
 	private String phone;
 	private String email;
@@ -23,11 +32,13 @@ public class Client {
 	private String complement;
 	private String city;
 	private String state;
+	@ManyToOne
+	private Bank bank;
 	
 	public Client(Integer id, String name, String phone, String email, String address, String number, String complement,
-			String city, String state) {
-		super();
-		this.id = id;
+			String city, String state, Bank bank) {
+		
+		this.clientId = id;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
@@ -36,14 +47,15 @@ public class Client {
 		this.complement = complement;
 		this.city = city;
 		this.state = state;
+		this.bank = bank;
 	}
 
 	public Integer getId() {
-		return id;
+		return clientId;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.clientId = id;
 	}
 
 	public String getName() {
@@ -112,7 +124,7 @@ public class Client {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(clientId);
 	}
 
 	@Override
@@ -124,7 +136,7 @@ public class Client {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(clientId, other.clientId);
 	}
 	
 	

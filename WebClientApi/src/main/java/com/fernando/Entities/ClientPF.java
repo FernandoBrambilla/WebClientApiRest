@@ -1,10 +1,16 @@
 package com.fernando.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ClientPF extends Client {
-	
-	
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity 
+@Table
+public class ClientPF extends Client implements Serializable{
+	private static final long serialVersionUID = 1L;
+			
 	private String cpf;
 	private Date dateNasc;
 	private String rg;
@@ -12,14 +18,15 @@ public class ClientPF extends Client {
 	
 	public ClientPF(Integer id, String name, String phone, String email, String address, 
 			String number, String complement, String city, String state, String cpf,
-			Date dateNasc, String rg, Date dateExp) {
-			super(id, name, phone, email, address, number, complement, city, state);
+			Date dateNasc, String rg, Date dateExp, Bank bank) {
+			super(id, name, phone, email, address, number, complement, city, state, bank);
 			this.cpf = cpf;
 			this.dateNasc = dateNasc;
 			this.rg = rg;
 			this.dateExp = dateExp;
 	}
 
+	
 	public String getCpf() {
 		return cpf;
 	}
@@ -52,5 +59,6 @@ public class ClientPF extends Client {
 		this.dateExp = dateExp;
 	}
 
+	
 	
 }

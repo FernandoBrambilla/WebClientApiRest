@@ -1,33 +1,52 @@
 package com.fernando.Entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ClientPJ extends Client{
+import javax.persistence.Entity;
+ 
+import javax.persistence.Table;
+
+
+@Entity
+@Table
+public class ClientPJ extends Client implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
+	private String cnpj;
+	private String inscEst;
 	
-	private Integer cnpj;
-	private Integer inscEst;
-	
-	public ClientPJ(Integer id, String name, String phone, String email, String address, String number,
-			String complement, String city, String state) {
-		super(id, name, phone, email, address, number, complement, city, state);
+	public ClientPJ(Integer id, String name, String cnpj, String inscEst, String phone, 
+			String email, String address, String number,
+			String complement, String city, String state, Bank bank) {
+		super(id, name, phone, email, address, number, complement, city, state, bank);
+		this.cnpj = cnpj;
+		this.inscEst = inscEst;
 	}
 
-	public Integer getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(Integer cnpj) {
+
+
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
-	public Integer getInscEst() {
+
+
+	public String getInscEst() {
 		return inscEst;
 	}
 
-	public void setInscEst(Integer inscEst) {
+
+
+	public void setInscEst(String inscEst) {
 		this.inscEst = inscEst;
 	}
+
+
 
 	@Override
 	public int hashCode() {
