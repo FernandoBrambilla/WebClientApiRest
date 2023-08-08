@@ -1,9 +1,21 @@
 package com.fernando.Entities;
 
+import java.io.Serializable;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class User {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String user;
 	private String email;
@@ -77,5 +89,25 @@ public class User {
 	}
 	
 	
+	public boolean isEmailValid(String email) {
+		boolean isEmailValid = false;
+		if(email != null && email.length()>0) {
+			String regex = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            if (matcher.matches()) {
+                isEmailValid = true;
+            }
+            else {
+    			System.out.println("Email inválido");
+    		}
+        }
+        return isEmailValid;
+        
+		}
+		
+	}
 
-}
+	
+
+

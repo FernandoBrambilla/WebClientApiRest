@@ -54,10 +54,6 @@ public abstract class Client implements Serializable{
 		return clientId;
 	}
 
-	public void setId(Integer id) {
-		this.clientId = id;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -138,8 +134,4 @@ public abstract class Client implements Serializable{
 		Client other = (Client) obj;
 		return Objects.equals(clientId, other.clientId);
 	}
-	
-	
-
-
 }

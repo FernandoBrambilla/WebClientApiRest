@@ -13,6 +13,7 @@ import com.fernando.Entities.Bank;
 import com.fernando.Entities.Client;
 import com.fernando.Entities.ClientPF;
 import com.fernando.Entities.ClientPJ;
+import com.fernando.Entities.User;
 import com.fernando.Enums.AccountBankType;
 import com.fernando.Enums.State;
 
@@ -34,7 +35,7 @@ public class WebClientApiApplication {
 				"Av Presidente Vargas","192", "Centro", "Marumbi", State.PARANA.getDescricao(),
 				banco1);
 		
-	
+		User user1 = new User(null, "Fernando", "fernando", "43999991234", "11112222");
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");
 		EntityManager em = emf.createEntityManager();
@@ -42,6 +43,7 @@ public class WebClientApiApplication {
 		em.persist(clientePf);
 		em.persist(clientPJ);
 		em.persist(banco1);
+		em.persist(user1);
 		em.getTransaction().commit();
 		em.close();
 

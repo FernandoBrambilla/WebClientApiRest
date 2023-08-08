@@ -25,7 +25,6 @@ public class ClientPF extends Client implements Serializable{
 			this.rg = rg;
 			this.dateExp = dateExp;
 	}
-
 	
 	public String getCpf() {
 		return cpf;
@@ -58,7 +57,5 @@ public class ClientPF extends Client implements Serializable{
 	public void setDateExp(Date dateExp) {
 		this.dateExp = dateExp;
 	}
-
-	
 	
 }

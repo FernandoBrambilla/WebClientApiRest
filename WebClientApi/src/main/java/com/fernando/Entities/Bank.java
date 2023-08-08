@@ -1,5 +1,6 @@
 package com.fernando.Entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -7,11 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fernando.Enums.AccountBankType;
 
 @Entity
-public class Bank {
-
+public class Bank implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -29,67 +30,41 @@ public class Bank {
 		this.account = account;
 	}
 
-
-
 	public Integer getId() {
 		return id;
 	}
-
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
 
 	public String getName() {
 		return name;
 	}
 
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	public String getAccountBankType() {
 		return accountBankType;
 	}
 
-
-
 	public void setAccountBankType(String accountBankType) {
 		this.accountBankType = accountBankType;
 	}
-
-
 
 	public String getAg() {
 		return ag;
 	}
 
-
-
 	public void setAg(String ag) {
 		this.ag = ag;
 	}
-
-
 
 	public String getAccount() {
 		return account;
 	}
 
-
-
 	public void setAccount(String account) {
 		this.account = account;
 	}
-
-
 
 	@Override
 	public int hashCode() {
