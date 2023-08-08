@@ -23,6 +23,7 @@ public class WebClientApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WebClientApiApplication.class, args);
 		
+		/*
 		Bank banco1 = new Bank(null, "Sicredi",AccountBankType.CORRENTE.getDescricao(), 
 				"0736","45455");
 		
@@ -46,7 +47,7 @@ public class WebClientApiApplication {
 		em.persist(user1);
 		em.getTransaction().commit();
 		em.close();
-
+	*/
 		
 		
 	}
