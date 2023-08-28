@@ -3,9 +3,10 @@ package com.fernando.Entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Entity;
- 
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 
 
 @Entity
@@ -13,7 +14,10 @@ import javax.persistence.Table;
 public class ClientPJ extends Client implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Column (nullable = false)
 	private String cnpj;
+	
+	@Column (nullable = false)
 	private String inscEst;
 	
 	public ClientPJ(Integer id, String name, String cnpj, String inscEst, String phone, 

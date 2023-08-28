@@ -3,17 +3,26 @@ package com.fernando.Entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 
 @Entity 
 @Table
 public class ClientPF extends Client implements Serializable{
 	private static final long serialVersionUID = 1L;
-			
+	
+	@Column (nullable = false)
 	private String cpf;
+	
+	@Column (nullable = false)
 	private Date dateNasc;
+	
+	@Column (nullable = false)
 	private String rg;
+	
+	@Column (nullable = false)
 	private Date dateExp;
 	
 	public ClientPF(Integer id, String name, String phone, String email, String address, 

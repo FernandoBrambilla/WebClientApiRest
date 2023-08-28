@@ -3,15 +3,15 @@ package com.fernando.Entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
+
 
 
 
@@ -24,14 +24,28 @@ public abstract class Client implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private Integer clientId;
+	
+	@Column (nullable = false)
 	private String name;
+	
+	@Column (nullable = false)
 	private String phone;
+	
+	@Column (nullable = false)
 	private String email;
+	
+	@Column (nullable = false)
 	private String address;
+	
 	private String number;
 	private String complement;
+	
+	@Column (nullable = false)
 	private String city;
+	
+	@Column (nullable = false)
 	private String state;
+	
 	@ManyToOne
 	private Bank bank;
 	
