@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fernando.Entities.Client;
 import com.fernando.services.ClientService;
 
-
-
-
 @RestController
 @RequestMapping(value = "/client")
 public class ClientController {
