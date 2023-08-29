@@ -3,6 +3,7 @@ package com.fernando.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.fernando.Entities.User;
@@ -47,5 +48,6 @@ public class UserService {
 			User entity = repository.findById(id).orElseThrow(
 			() -> new ResourceNotFoundException("No records found for this ID"));
 			repository.delete(entity);	
+			
 		}
 }

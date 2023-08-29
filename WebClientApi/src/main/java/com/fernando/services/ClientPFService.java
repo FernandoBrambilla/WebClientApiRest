@@ -3,6 +3,7 @@ package com.fernando.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.fernando.Entities.Client;
@@ -57,5 +58,6 @@ public class ClientPFService {
 		ClientPF entity = repository.findById(id).orElseThrow(
 		() -> new ResourceNotFoundException("No records found for this ID"));
 		repository.delete(entity);
+		
 	}
 }
