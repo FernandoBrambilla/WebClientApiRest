@@ -2,9 +2,11 @@ package com.fernando.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -25,16 +27,24 @@ public class ClientPF extends Client implements Serializable{
 	@Column (nullable = false)
 	private Date dateExp;
 	
+	@ManyToOne
+	private Bank bank;
+	
 	public ClientPF(Integer id, String name, String phone, String email, String address, 
 			String number, String complement, String city, String state, String cpf,
 			Date dateNasc, String rg, Date dateExp, Bank bank) {
-			super(id, name, phone, email, address, number, complement, city, state, bank);
+			super(id, name, phone, email, address, number, complement, city, state);
 			this.cpf = cpf;
 			this.dateNasc = dateNasc;
 			this.rg = rg;
 			this.dateExp = dateExp;
 	}
 	
+	public ClientPF() {
+			
+	}
+		
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -66,5 +76,34 @@ public class ClientPF extends Client implements Serializable{
 	public void setDateExp(Date dateExp) {
 		this.dateExp = dateExp;
 	}
+
+	public Bank getBank() {
+		return bank;
+	}
+
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(cpf);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ClientPF other = (ClientPF) obj;
+		return Objects.equals(cpf, other.cpf);
+	}
+	
 	
 }

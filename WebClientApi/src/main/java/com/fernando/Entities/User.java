@@ -33,12 +33,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public Integer getId() {
-		return id;
+	
+	public User() {
+		super();
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+
+	public Integer getId() {
+		return id;
 	}
 
 	public String getUser() {

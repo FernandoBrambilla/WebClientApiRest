@@ -14,19 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fernando.Entities.Client;
-import com.fernando.services.ClientService;
+import com.fernando.Entities.ClientPF;
+import com.fernando.services.ClientPFService;
 
 @RestController
-@RequestMapping(value = "/client")
-public class ClientController {
+@RequestMapping(value = "/clientspf")
+public class ClientPFController {
 
 	@Autowired
-	private ClientService service;
+	private ClientPFService service;
 
 	
 	//FindAll Controller
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Client> findAll(){
+	public List<ClientPF> findAll(){
 		return service.findAll();
 	}
 	
@@ -39,15 +40,15 @@ public class ClientController {
 	//Create Controller
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Client create(@RequestBody Client client) {
-		return service.create(client);	
+	public Client create(@RequestBody ClientPF clientPF) {
+		return service.create(clientPF);	
 	}
 	
 	//Update Controller
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Client update(@RequestBody Client client) {
-		return service.update(client);
+	public Client update(@RequestBody ClientPF clientPF) {
+		return service.update(clientPF);
 	}
 	
 	//Delete Controller

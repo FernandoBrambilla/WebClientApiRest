@@ -46,11 +46,10 @@ public abstract class Client implements Serializable{
 	@Column (nullable = false)
 	private String state;
 	
-	@ManyToOne
-	private Bank bank;
+	
 	
 	public Client(Integer id, String name, String phone, String email, String address, String number, String complement,
-			String city, String state, Bank bank) {
+			String city, String state) {
 		
 		this.clientId = id;
 		this.name = name;
@@ -61,12 +60,13 @@ public abstract class Client implements Serializable{
 		this.complement = complement;
 		this.city = city;
 		this.state = state;
-		this.bank = bank;
+		
 	}
 
-	public Integer getId() {
-		return clientId;
+	public Client() {
+		
 	}
+
 
 	public String getName() {
 		return name;
@@ -130,6 +130,10 @@ public abstract class Client implements Serializable{
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public Integer getClientId() {
+		return clientId;
 	}
 
 	@Override

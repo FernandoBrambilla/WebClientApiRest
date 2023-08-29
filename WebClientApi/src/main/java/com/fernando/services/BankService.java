@@ -5,47 +5,48 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fernando.Entities.User;
+import com.fernando.Entities.Bank;
 import com.fernando.Exceptions.ResourceNotFoundException;
-import com.fernando.Repositories.UserRepository;
+import com.fernando.Repositories.BankRepository;
 
 @Service
-public class UserService {
+public class BankService {
 	
 	@Autowired
-	UserRepository repository;
+	BankRepository repository;
 	
 	//FindAll
-	public List<User> findAll(){
+	public List<Bank> findAll(){
 		return repository.findAll();
 	}
 	
 	//FindById
-	public User findById(Integer id) {
+	public Bank findById(Integer id) {
 		return repository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("No records found for this ID"));
 	}
 	
 	//Create
-	public User create(User user) {
-		return repository.save(user);
+	public Bank create(Bank bank) {
+		return repository.save(bank);
 	}
 	
 	//Update
-	public User update(User user) {
-		User entity = repository.findById(user.getId()).orElseThrow(
+	public Bank update(Bank bank) {
+		Bank entity = repository.findById(bank.getId()).orElseThrow(
 		() -> new ResourceNotFoundException("No records found for this ID"));
-		entity.setUser(user.getUser());
-		entity.setEmail(user.getEmail());
-		entity.setPhone(user.getPhone());
-		entity.setPassword(user.getPassword());
+		entity.setName(bank.getName());
+		entity.setAg(bank.getAg());
+		entity.setAccount(bank.getAccount());
+		entity.setAccountBankType(bank.getAccountBankType());
 		return repository.save(entity);
 	}
 	
 	//Delete
 		public void delete(Integer id) {
-			User entity = repository.findById(id).orElseThrow(
+			Bank entity = repository.findById(id).orElseThrow(
 			() -> new ResourceNotFoundException("No records found for this ID"));
 			repository.delete(entity);	
 		}
+
 }

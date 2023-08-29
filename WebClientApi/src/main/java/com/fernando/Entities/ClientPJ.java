@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -20,13 +21,23 @@ public class ClientPJ extends Client implements Serializable{
 	@Column (nullable = false)
 	private String inscEst;
 	
+	@ManyToOne
+	private Bank bank;
+	
 	public ClientPJ(Integer id, String name, String cnpj, String inscEst, String phone, 
 			String email, String address, String number,
 			String complement, String city, String state, Bank bank) {
-		super(id, name, phone, email, address, number, complement, city, state, bank);
+		super(id, name, phone, email, address, number, complement, city, state);
 		this.cnpj = cnpj;
 		this.inscEst = inscEst;
 	}
+	
+	
+
+	public ClientPJ() {
+	}
+
+
 
 	public String getCnpj() {
 		return cnpj;
@@ -48,6 +59,17 @@ public class ClientPJ extends Client implements Serializable{
 
 	public void setInscEst(String inscEst) {
 		this.inscEst = inscEst;
+	}
+
+
+	public Bank getBank() {
+		return bank;
+	}
+
+
+
+	public void setBank(Bank bank) {
+		this.bank = bank;
 	}
 
 
