@@ -89,7 +89,7 @@ public class ClientPF extends Client implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(cpf);
+		result = prime * result + Objects.hash(bank, cpf, dateExp, dateNasc, rg);
 		return result;
 	}
 
@@ -102,8 +102,10 @@ public class ClientPF extends Client implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ClientPF other = (ClientPF) obj;
-		return Objects.equals(cpf, other.cpf);
+		return Objects.equals(bank, other.bank) && Objects.equals(cpf, other.cpf)
+				&& Objects.equals(dateExp, other.dateExp) && Objects.equals(dateNasc, other.dateNasc)
+				&& Objects.equals(rg, other.rg);
 	}
-	
+
 	
 }

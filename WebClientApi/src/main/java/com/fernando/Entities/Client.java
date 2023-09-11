@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 
 
@@ -138,7 +137,7 @@ public abstract class Client implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(clientId);
+		return Objects.hash(address, city, clientId, complement, email, name, number, phone, state);
 	}
 
 	@Override
@@ -150,6 +149,11 @@ public abstract class Client implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		return Objects.equals(clientId, other.clientId);
+		return Objects.equals(address, other.address) && Objects.equals(city, other.city)
+				&& Objects.equals(clientId, other.clientId) && Objects.equals(complement, other.complement)
+				&& Objects.equals(email, other.email) && Objects.equals(name, other.name)
+				&& Objects.equals(number, other.number) && Objects.equals(phone, other.phone)
+				&& Objects.equals(state, other.state);
 	}
+
 }

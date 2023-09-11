@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+
+
 @Entity
 public class Bank implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -71,10 +73,12 @@ public class Bank implements Serializable {
 		this.account = account;
 	}
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(account, accountBankType, ag, name);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -85,6 +89,11 @@ public class Bank implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bank other = (Bank) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(account, other.account) && Objects.equals(accountBankType, other.accountBankType)
+				&& Objects.equals(ag, other.ag) && Objects.equals(name, other.name);
 	}
+	
+	
+	
 }
+

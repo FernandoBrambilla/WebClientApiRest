@@ -78,9 +78,11 @@ public class ClientPJ extends Client implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(cnpj);
+		result = prime * result + Objects.hash(bank, cnpj, inscEst);
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -91,7 +93,8 @@ public class ClientPJ extends Client implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ClientPJ other = (ClientPJ) obj;
-		return Objects.equals(cnpj, other.cnpj);
+		return Objects.equals(bank, other.bank) && Objects.equals(cnpj, other.cnpj)
+				&& Objects.equals(inscEst, other.inscEst);
 	}
 	
 	

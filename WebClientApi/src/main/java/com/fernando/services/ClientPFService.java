@@ -3,11 +3,11 @@ package com.fernando.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.fernando.Entities.Client;
 import com.fernando.Entities.ClientPF;
+import com.fernando.Exceptions.RequiredObjectIsNullException;
 import com.fernando.Exceptions.ResourceNotFoundException;
 import com.fernando.Repositories.ClientPFRepository;
 
@@ -16,27 +16,31 @@ public class ClientPFService {
 
 	@Autowired
 	ClientPFRepository repository;
-		
-	//FindAll
+
+	// FindAll
 	public List<ClientPF> findAll() {
 		return repository.findAll();
 	}
-	
-	//FindById
+
+	// FindById
 	public Client findById(Integer id) {
-		return repository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("No records found for this ID"));
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 	}
-	
-	//Create
-	public Client create (ClientPF clientPF) {
+
+	// Create
+	public Client create(ClientPF clientPF) {
+		if (clientPF == null)
+			throw new RequiredObjectIsNullException();
 		return repository.save(clientPF);
 	}
-	
-	//Update
-	public Client update (ClientPF clientPF) {
-		ClientPF entity = repository.findById(clientPF.getClientId()).orElseThrow(
-		() -> new ResourceNotFoundException("No records found for this ID"));
+
+	// Update
+	public Client update(ClientPF clientPF) {
+		if (clientPF == null)
+			throw new RequiredObjectIsNullException();
+		
+		ClientPF entity = repository.findById(clientPF.getClientId())
+				.orElseThrow(() -> new ResourceNotFoundException());
 		entity.setName(clientPF.getName());
 		entity.setCpf(clientPF.getCpf());
 		entity.setPhone(clientPF.getPhone());
@@ -52,12 +56,12 @@ public class ClientPFService {
 		entity.setBank(clientPF.getBank());
 		return repository.save(entity);
 	}
-	
-	//Delete
+
+	// Delete
 	public void delete(Integer id) {
-		ClientPF entity = repository.findById(id).orElseThrow(
-		() -> new ResourceNotFoundException("No records found for this ID"));
+		ClientPF entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 		repository.delete(entity);
-		
+
 	}
 }

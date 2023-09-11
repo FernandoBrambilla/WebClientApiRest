@@ -2,8 +2,6 @@ package com.fernando.Entities;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -74,11 +72,12 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+		
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(email, password, phone, user);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -89,28 +88,12 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(email, other.email) && Objects.equals(password, other.password)
+				&& Objects.equals(phone, other.phone) && Objects.equals(user, other.user);
 	}
 	
 	
-	public boolean isEmailValid(String email) {
-		boolean isEmailValid = false;
-		if(email != null && email.length()>0) {
-			String regex = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(email);
-            if (matcher.matches()) {
-                isEmailValid = true;
-            }
-            else {
-    			System.out.println("Email inválido");
-    		}
-        }
-        return isEmailValid;
-        
-		}
-		
-	}
+}
 
 	
 
