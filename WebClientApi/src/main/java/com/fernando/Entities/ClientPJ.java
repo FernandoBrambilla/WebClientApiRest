@@ -24,6 +24,7 @@ public class ClientPJ extends Client implements Serializable{
 	@ManyToOne
 	private Bank bank;
 	
+	//CONSTUCTOR
 	public ClientPJ(Integer id, String name, String cnpj, String inscEst, String phone, 
 			String email, String address, String number,
 			String complement, String city, String state, Bank bank) {
@@ -32,48 +33,35 @@ public class ClientPJ extends Client implements Serializable{
 		this.inscEst = inscEst;
 	}
 	
-	
-
 	public ClientPJ() {
 	}
 
-
-
+	//GETTERS AND SETTERS
 	public String getCnpj() {
 		return cnpj;
 	}
-
-
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
-
-
 	public String getInscEst() {
 		return inscEst;
 	}
-
-
 
 	public void setInscEst(String inscEst) {
 		this.inscEst = inscEst;
 	}
 
-
 	public Bank getBank() {
 		return bank;
 	}
-
-
 
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
 
-
-
+	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,8 +69,6 @@ public class ClientPJ extends Client implements Serializable{
 		result = prime * result + Objects.hash(bank, cnpj, inscEst);
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -96,7 +82,5 @@ public class ClientPJ extends Client implements Serializable{
 		return Objects.equals(bank, other.bank) && Objects.equals(cnpj, other.cnpj)
 				&& Objects.equals(inscEst, other.inscEst);
 	}
-	
-	
 
 }

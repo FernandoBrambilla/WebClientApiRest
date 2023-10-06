@@ -3,6 +3,9 @@ package com.fernando.Entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,17 +14,27 @@ import jakarta.persistence.Id;
 
 
 @Entity
+@JsonPropertyOrder({"id", "name", "account_bank_type", "ag", "account"})
 public class Bank implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column (nullable = false)
 	private String name;
+	
+	@Column (name= ("account_bank_type"), nullable = false)
 	private String accountBankType;
+	
+	@Column (nullable = false)
 	private String ag;
+	
+	@Column (nullable = false)
 	private String account;
 
+		//CONSTUCTOR
 	public Bank(Integer id, String name, String accountBankType, String ag,
 			String account) {
 		this.id = id;
@@ -31,12 +44,11 @@ public class Bank implements Serializable {
 		this.account = account;
 	}
 
-	
 	public Bank() {
-		super();
+	
 	}
 
-
+	//GETTERS AND SETTERS
 	public Integer getId() {
 		return id;
 	}
@@ -73,12 +85,11 @@ public class Bank implements Serializable {
 		this.account = account;
 	}
 
-
+	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		return Objects.hash(account, accountBankType, ag, name);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -91,9 +102,7 @@ public class Bank implements Serializable {
 		Bank other = (Bank) obj;
 		return Objects.equals(account, other.account) && Objects.equals(accountBankType, other.accountBankType)
 				&& Objects.equals(ag, other.ag) && Objects.equals(name, other.name);
-	}
-	
-	
+	}	
 	
 }
 

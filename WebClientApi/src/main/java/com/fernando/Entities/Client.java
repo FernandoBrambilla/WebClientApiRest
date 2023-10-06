@@ -45,8 +45,7 @@ public abstract class Client implements Serializable{
 	@Column (nullable = false)
 	private String state;
 	
-	
-	
+	//CONSTUCTOR	
 	public Client(Integer id, String name, String phone, String email, String address, String number, String complement,
 			String city, String state) {
 		
@@ -66,7 +65,7 @@ public abstract class Client implements Serializable{
 		
 	}
 
-
+	//GETTERS AND SETTERS
 	public String getName() {
 		return name;
 	}
@@ -135,6 +134,7 @@ public abstract class Client implements Serializable{
 		return clientId;
 	}
 
+	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		return Objects.hash(address, city, clientId, complement, email, name, number, phone, state);

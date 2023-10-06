@@ -38,9 +38,7 @@ public class UserService {
 		if (user == null)
 			throw new RequiredObjectIsNullException();
 		User entity = repository.findById(user.getId()).orElseThrow(() -> new ResourceNotFoundException());
-		entity.setUser(user.getUser());
-		entity.setEmail(user.getEmail());
-		entity.setPhone(user.getPhone());
+		entity.setUserName(user.getUsername());
 		entity.setPassword(user.getPassword());
 		return repository.save(entity);
 	}

@@ -8,6 +8,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 
 @Entity 
@@ -19,6 +21,7 @@ public class ClientPF extends Client implements Serializable{
 	private String cpf;
 	
 	@Column (nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date dateNasc;
 	
 	@Column (nullable = false)
@@ -30,6 +33,7 @@ public class ClientPF extends Client implements Serializable{
 	@ManyToOne
 	private Bank bank;
 	
+	//CONSTUCTOR
 	public ClientPF(Integer id, String name, String phone, String email, String address, 
 			String number, String complement, String city, String state, String cpf,
 			Date dateNasc, String rg, Date dateExp, Bank bank) {
@@ -44,7 +48,7 @@ public class ClientPF extends Client implements Serializable{
 			
 	}
 		
-
+	//GETTERS AND SETTERS
 	public String getCpf() {
 		return cpf;
 	}
@@ -85,6 +89,7 @@ public class ClientPF extends Client implements Serializable{
 		this.bank = bank;
 	}
 
+	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,5 +112,4 @@ public class ClientPF extends Client implements Serializable{
 				&& Objects.equals(rg, other.rg);
 	}
 
-	
 }
