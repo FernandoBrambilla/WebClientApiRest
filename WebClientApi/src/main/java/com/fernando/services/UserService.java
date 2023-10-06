@@ -3,6 +3,9 @@ package com.fernando.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.fernando.Entities.User;
@@ -11,10 +14,15 @@ import com.fernando.Exceptions.ResourceNotFoundException;
 import com.fernando.Repositories.UserRepository;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService{
 
 	@Autowired
 	UserRepository repository;
+		
+	//CONSTRUCTOR
+	public UserService(UserRepository repository) {
+		this.repository = repository;
+	}
 
 	// FindAll
 	public List<User> findAll() {
@@ -49,5 +57,16 @@ public class UserService {
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 		repository.delete(entity);
 
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		var user = repository.findByUserName(username);
+		if(user != null) {
+			return user;
+		}
+		else {
+			throw new UsernameNotFoundException("Username" + username + " Not Found!");
+		}
 	}
 }
