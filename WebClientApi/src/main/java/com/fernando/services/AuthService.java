@@ -15,37 +15,47 @@ import com.fernando.Security.Jwt.JwtTokenProvider;
 
 @Service
 public class AuthService {
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@SuppressWarnings("rawtypes")
-	public ResponseEntity signin (AccountCredential data) {
+	public ResponseEntity signin(AccountCredential data) {
 		try {
 			var userName = data.getUserName();
 			var password = data.getPassword();
-			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(userName, password));
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, password));
 			var user = userRepository.findByUserName(userName);
 			var tokenResponse = new Token();
 			if (user != null) {
 				tokenResponse = jwtTokenProvider.createAccessToken(userName, user.getRoles());
-			}
-			else {
-				throw new UsernameNotFoundException("Username "+ userName +
-						"not found!");
+			} else {
+				throw new UsernameNotFoundException("Username " + userName + "not found!");
 			}
 			return ResponseEntity.ok(tokenResponse);
-			
+
 		} catch (Exception e) {
 			throw new BadCredentialsException("Invalid username/password supplied!");
 		}
-		
+
+	}
+
+	@SuppressWarnings("rawtypes")
+	public ResponseEntity refreshToken(String userName, String refreshToken) {
+			var user = userRepository.findByUserName(userName);
+			var tokenResponse = new Token();
+			if (user != null) {
+				tokenResponse = jwtTokenProvider.refreshToken(refreshToken);
+			} else {
+				throw new UsernameNotFoundException("Username " + userName + "not found!");
+			}
+			return ResponseEntity.ok(tokenResponse);
+
 	}
 }
