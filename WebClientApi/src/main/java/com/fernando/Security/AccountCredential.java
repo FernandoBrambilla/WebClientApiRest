@@ -3,30 +3,29 @@ package com.fernando.Security;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class AccontCredential implements Serializable{
+public class AccountCredential implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private String userName;
+	private String username;
 	private String password;
 	
 	//CONSTRUCTOR
-	public AccontCredential(String userName, String password) {
-		super();
-		this.userName = userName;
+	public AccountCredential(String username, String password) {
+		this.username = username;
 		this.password = password;
 	}
 		
-	public AccontCredential() {
+	public AccountCredential() {
 
 	}
 
 	//GETTERS AND SETTERS
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 	
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -38,7 +37,7 @@ public class AccontCredential implements Serializable{
 	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
-		return Objects.hash(password, userName);
+		return Objects.hash(password, username);
 	}
 
 	@Override
@@ -49,7 +48,7 @@ public class AccontCredential implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AccontCredential other = (AccontCredential) obj;
-		return Objects.equals(password, other.password) && Objects.equals(userName, other.userName);
+		AccountCredential other = (AccountCredential) obj;
+		return Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
 }

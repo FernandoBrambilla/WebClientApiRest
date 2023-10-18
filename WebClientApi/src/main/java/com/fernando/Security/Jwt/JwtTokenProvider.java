@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,6 +18,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fernando.Exceptions.InvalidJwtAuthenticationException;
 import com.fernando.Security.Token;
+import com.fernando.services.UserService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,10 +30,10 @@ public class JwtTokenProvider {
 	private String secretKey = "secret";
 	
 	@Value("${security.jwt.token.expire-length:3600000}")
-	private long validityInMillisecond = 3600000; //1 hour
+	private long validityInMilliseconds = 3600000; //1 hour
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private UserService userService;
 	
 	Algorithm algorithm = null;
 	
@@ -45,7 +45,7 @@ public class JwtTokenProvider {
 	
 	public Token createAccessToken(String userName, List<String> roles) {
 		Date  now = new Date();
-		Date vality = new Date(now.getTime() + validityInMillisecond);
+		Date vality = new Date(now.getTime() + validityInMilliseconds);
 		var accessToken = getAccessToken(userName, roles, now, vality);
 		var refleshToken = getRefleshToken(userName, roles, now);
 		return new Token(userName, true, now, vality, accessToken, refleshToken);
@@ -65,7 +65,7 @@ public class JwtTokenProvider {
 	}
 	
 private String getRefleshToken(String userName, List<String> roles, Date now) {
-		Date valityRefleshToken = new Date(now.getTime() + validityInMillisecond * 3);
+		Date valityRefleshToken = new Date(now.getTime() + validityInMilliseconds * 3);
 		return JWT.create()
 				.withClaim("roles", roles)
 				.withIssuedAt(now)
@@ -77,7 +77,7 @@ private String getRefleshToken(String userName, List<String> roles, Date now) {
 
 public Authentication getAuthentication (String token) {
 	DecodedJWT decodeJWT = decodedToken(token);
-	UserDetails userDetails = this.userDetailsService
+	UserDetails userDetails = this.userService
 			.loadUserByUsername(decodeJWT.getSubject());
 	return new UsernamePasswordAuthenticationToken(userDetails, ""
 			, userDetails.getAuthorities());

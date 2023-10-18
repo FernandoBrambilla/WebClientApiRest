@@ -10,10 +10,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 
 
 @Entity
+@Table()
 @JsonPropertyOrder({"id", "name", "account_bank_type", "ag", "account"})
 public class Bank implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -34,7 +36,7 @@ public class Bank implements Serializable {
 	@Column (nullable = false)
 	private String account;
 
-		//CONSTUCTOR
+	//CONSTUCTOR
 	public Bank(Integer id, String name, String accountBankType, String ag,
 			String account) {
 		this.id = id;

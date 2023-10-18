@@ -8,6 +8,6 @@ import com.fernando.Entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	@Query("SELECT u FROM User WHERE u.userName =:userName")
+	@Query("SELECT u FROM User u WHERE u.userName =:userName")
 	User findByUserName(@Param("userName") String userName);
 }

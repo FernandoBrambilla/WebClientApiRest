@@ -14,12 +14,13 @@ import com.fernando.Exceptions.ResourceNotFoundException;
 import com.fernando.Repositories.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
 
 	@Autowired
 	UserRepository repository;
-		
-	//CONSTRUCTOR
+
+	// CONSTRUCTOR
+
 	public UserService(UserRepository repository) {
 		this.repository = repository;
 	}
@@ -45,27 +46,21 @@ public class UserService implements UserDetailsService{
 	public User update(User user) {
 		if (user == null)
 			throw new RequiredObjectIsNullException();
-		User entity = repository.findById(user.getId()).orElseThrow(() -> new ResourceNotFoundException());
-		entity.setUserName(user.getUsername());
+
+		User entity = repository.findById(user.getId())
+				.orElseThrow(() -> new ResourceNotFoundException());
+		entity.setFullName(user.getFullName());
+		entity.setUserName(user.getUserName());
 		entity.setPassword(user.getPassword());
 		return repository.save(entity);
-	}
-
-	// Delete
-	public void delete(Integer id) {
-		User entity = repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
-		repository.delete(entity);
-
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		var user = repository.findByUserName(username);
-		if(user != null) {
+		if (user != null) {
 			return user;
-		}
-		else {
+		} else {
 			throw new UsernameNotFoundException("Username" + username + " Not Found!");
 		}
 	}

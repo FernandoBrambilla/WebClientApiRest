@@ -39,6 +39,7 @@ public class UserController {
 		return service.findById(id);
 	}
 	
+	
 	//Create Controller
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 				 produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,11 +53,4 @@ public class UserController {
 	public User update(@RequestBody User user) {
 		return service.update(user);
 	}
-		
-	//Delete Controller
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> delete(@PathVariable (value = "id") Integer id) {
-		service.delete(id);
-		return ResponseEntity.noContent().build();
-	}	
 }
