@@ -12,18 +12,18 @@ public class Token implements Serializable{
 	private Date create;
 	private Date expiration;
 	private String accessToken;
-	private String refleshToken;
+	private String refreshToken;
 	
 	//CONSTUCTOR
 	public Token(String userName, Boolean authenticated, Date create, Date expiration, String accessToken,
-			String refleshToken) {
+			String refreshToken) {
 		super();
 		this.userName = userName;
 		this.authenticated = authenticated;
 		this.create = create;
 		this.expiration = expiration;
 		this.accessToken = accessToken;
-		this.refleshToken = refleshToken;
+		this.refreshToken = refreshToken;
 	}
 
 	public Token() {
@@ -72,17 +72,17 @@ public class Token implements Serializable{
 	}
 
 	public String getRefleshToken() {
-		return refleshToken;
+		return refreshToken;
 	}
 
-	public void setRefleshToken(String refleshToken) {
-		this.refleshToken = refleshToken;
+	public void setRefleshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
 	}
 	
 	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
-		return Objects.hash(accessToken, authenticated, create, expiration, refleshToken, userName);
+		return Objects.hash(accessToken, authenticated, create, expiration, refreshToken, userName);
 	}
 
 	@Override
@@ -96,6 +96,6 @@ public class Token implements Serializable{
 		Token other = (Token) obj;
 		return Objects.equals(accessToken, other.accessToken) && Objects.equals(authenticated, other.authenticated)
 				&& Objects.equals(create, other.create) && Objects.equals(expiration, other.expiration)
-				&& Objects.equals(refleshToken, other.refleshToken) && Objects.equals(userName, other.userName);
+				&& Objects.equals(refreshToken, other.refreshToken) && Objects.equals(userName, other.userName);
 	}
 }

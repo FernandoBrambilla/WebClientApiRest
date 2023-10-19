@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fernando.Entities.Client;
 import com.fernando.Entities.ClientPF;
 import com.fernando.services.ClientPFService;
 
@@ -34,27 +33,27 @@ public class ClientPFController {
 	
 	//FindById Controller
 	@GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public Client findById(@PathVariable(value = "id") Integer id) {
+	public ClientPF findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
 	
 	//Create Controller
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Client create(@RequestBody ClientPF clientPF) {
+	public ClientPF create(@RequestBody ClientPF clientPF) {
 		return service.create(clientPF);	
 	}
 	
 	//Update Controller
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Client update(@RequestBody ClientPF clientPF) {
+	public ClientPF update(@RequestBody ClientPF clientPF) {
 		return service.update(clientPF);
 	}
 	
 	//Delete Controller
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> delete(@PathVariable (value = "id") Integer id) {
+	public ResponseEntity<?> delete(@PathVariable (value = "id") Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

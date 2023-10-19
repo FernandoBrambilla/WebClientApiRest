@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fernando.Entities.Client;
 import com.fernando.Entities.ClientPF;
 import com.fernando.Exceptions.RequiredObjectIsNullException;
 import com.fernando.Exceptions.ResourceNotFoundException;
@@ -23,42 +22,44 @@ public class ClientPFService {
 	}
 
 	// FindById
-	public Client findById(Integer id) {
+	public ClientPF findById(Long id) {
 		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 	}
 
 	// Create
-	public Client create(ClientPF clientPF) {
+	public ClientPF create(ClientPF clientPF) {
 		if (clientPF == null)
 			throw new RequiredObjectIsNullException();
 		return repository.save(clientPF);
 	}
 
 	// Update
-	public Client update(ClientPF clientPF) {
+	public ClientPF update(ClientPF clientPF) {
 		if (clientPF == null)
 			throw new RequiredObjectIsNullException();
 		
-		ClientPF entity = repository.findById(clientPF.getClientId())
+		ClientPF entity = repository.findById(clientPF.getId())
 				.orElseThrow(() -> new ResourceNotFoundException());
 		entity.setName(clientPF.getName());
-		entity.setCpf(clientPF.getCpf());
 		entity.setPhone(clientPF.getPhone());
 		entity.setEmail(clientPF.getEmail());
-		entity.setDateNasc(clientPF.getDateNasc());
+		entity.setCpf(clientPF.getCpf());
 		entity.setRg(clientPF.getRg());
+		entity.setDateNasc(clientPF.getDateNasc());
 		entity.setDateExp(clientPF.getDateExp());
 		entity.setAddress(clientPF.getAddress());
-		entity.setNumber(clientPF.getNumber());
-		entity.setComplement(clientPF.getComplement());
+		entity.setAddressNumber(clientPF.getAddressNumber());
+		entity.setAddressComplement(clientPF.getAddressComplement());
 		entity.setCity(clientPF.getCity());
-		entity.setState(clientPF.getState());
+		entity.setUf(clientPF.getUf());
+		entity.setCep(clientPF.getCep());
 		entity.setBank(clientPF.getBank());
+		entity.setInsurance(clientPF.getInsurance());
 		return repository.save(entity);
 	}
 
 	// Delete
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		ClientPF entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 		repository.delete(entity);

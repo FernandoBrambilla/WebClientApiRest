@@ -22,7 +22,7 @@ public class ClientPJService {
 	}
 
 	// FindById
-	public ClientPJ findById(Integer id) {
+	public ClientPJ findById(Long id) {
 		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 	}
 
@@ -37,23 +37,26 @@ public class ClientPJService {
 	public ClientPJ update(ClientPJ clientPJ) {
 		if (clientPJ == null)
 			throw new RequiredObjectIsNullException();
-		var entity = repository.findById(clientPJ.getClientId())
+		var entity = repository.findById(clientPJ.getId())
 				.orElseThrow(() -> new ResourceNotFoundException());
 		entity.setName(clientPJ.getName());
 		entity.setPhone(clientPJ.getPhone());
 		entity.setEmail(clientPJ.getEmail());
 		entity.setCnpj(clientPJ.getCnpj());
-		entity.setInscEst(clientPJ.getInscEst());
+		entity.setIe(clientPJ.getIe());
 		entity.setAddress(clientPJ.getAddress());
-		entity.setNumber(clientPJ.getNumber());
-		entity.setComplement(clientPJ.getComplement());
+		entity.setAddressNumber(clientPJ.getAddressNumber());
+		entity.setAddressComplement(clientPJ.getAddressComplement());
 		entity.setCity(clientPJ.getCity());
-		entity.setState(clientPJ.getState());
+		entity.setUf(clientPJ.getUf());
+		entity.setCep(clientPJ.getCep());
+		entity.setBank(clientPJ.getBank());
+		entity.setInsurance(clientPJ.getInsurance());
 		return repository.save(entity);
 	}
 
 	// Delete
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		ClientPJ entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 		repository.delete(entity);

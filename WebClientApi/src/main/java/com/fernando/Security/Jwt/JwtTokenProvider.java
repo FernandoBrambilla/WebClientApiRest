@@ -47,8 +47,8 @@ public class JwtTokenProvider {
 		Date  now = new Date();
 		Date vality = new Date(now.getTime() + validityInMilliseconds);
 		var accessToken = getAccessToken(userName, roles, now, vality);
-		var refleshToken = getRefleshToken(userName, roles, now);
-		return new Token(userName, true, now, vality, accessToken, refleshToken);
+		var refreshToken = getRefreshToken(userName, roles, now);
+		return new Token(userName, true, now, vality, accessToken, refreshToken);
 	}
 	
 	public Token refreshToken(String refreshToken) {
@@ -75,12 +75,12 @@ public class JwtTokenProvider {
 				.strip();
 	}
 	
-private String getRefleshToken(String userName, List<String> roles, Date now) {
-		Date valityRefleshToken = new Date(now.getTime() + validityInMilliseconds * 3);
+private String getRefreshToken(String userName, List<String> roles, Date now) {
+		Date valityRefreshToken = new Date(now.getTime() + validityInMilliseconds * 3);
 		return JWT.create()
 				.withClaim("roles", roles)
 				.withIssuedAt(now)
-				.withExpiresAt(valityRefleshToken)
+				.withExpiresAt(valityRefreshToken)
 				.withSubject(userName)
 				.sign(algorithm)
 				.strip();

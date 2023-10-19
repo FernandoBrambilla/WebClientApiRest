@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.fernando.Entities.ClientPF;
 
 
-public interface ClientPFRepository extends JpaRepository<ClientPF, Integer> {
+public interface ClientPFRepository extends JpaRepository<ClientPF, Long> {
 
 }
